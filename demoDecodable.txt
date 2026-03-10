@@ -1,0 +1,58 @@
+- RUNTIME BYTECODE
+0x6080604052348015600e575f5ffd5b50600436106026575f3560e01c8063e2ea0dd214602a575b5f5ffd5b60306044565b604051603b91906062565b60405180910390f35b5f5f54905090565b5f819050919050565b605c81604c565b82525050565b5f60208201905060735f8301846055565b9291505056fea26469706673582212204e941ef90e200ba12e309927e2b4f114a2bf7c88d1497c03a7ba8e5bb2becd9064736f6c634300081e0033
+PC DATA 
+1           0x60 //PUSH1
+            0x80 
+2           0x60 // PUSH1
+            0x40 // [0x40, 0x80]  
+3           0x52 // MSTORE(0x40,0x80)
+                                                       0x34 // CALLVALUE -> [msg.value]
+                                                       0x80 // DUP1      -> [msg.value, msg.value]
+                                                       0x15 // ISZERO    -> [true/false, msg.value]
+                                                       0x60 // PUSH1     -> [0x0e,true/false, msg.value]
+                                                       0x57 // JUMPI     -> [true ? 0x06: 4, msg.value]
+4          0x5f // PUSH0                                                 -> [0x00,msg.value]
+5          0X5f // PUSH0                                                 -> [0x00, 0x00, msg.value]
+6          0xfd // REVERT                                                -> [msg.value]
+7          0x5b JUMPDEST                                                 -> 
+8          0x50 POP                                                      -> []
+9          0x60 PUSH1                                                    -> [0x04]
+10         0x36 CALLDATASIZE                                             -> [len(func, func.data)]
+11         0x10 LT                                                       -> [len(func, func.data) < 0x04]
+12         0x60 PUSH1                                                    -> [0x26, len(func, func.data) < 0x04]
+13         0x57 JUMPI                                                    -> []
+14         0x5f PUSH0                                                    -> [0x00]
+15         0x35 CALLDATALOAD                                             -> [CALLDATA[0x00]]
+16         0x60 PUSH1                                                    -> [0xe0, CALLDATA[0x00]]
+17         0x1c SHR                                                      -> [CALLDATA[0x00:0x04]]
+18         0x80 DUP1                                                     -> [CALLDATA[0x00:0x04], CALLDATA[0x00:0x04]]
+19         0x63 PUSH4                                                    -> [e2ea0dd2, CALLDATA[0x00:0x04], CALLDATA[0x00:0x04]]
+20         0x14 EQ                                                       -> [e2ea0dd2 == CALLDATA[0x00:0x04], CALLDATA[0x00:0x04]]
+21         0x60 PUSH1                                                    -> [0x2a, e2ea0dd2 == CALLDATA[0x00:0x04], CALLDATA[0x00:0x04]]
+22         0x57 JUMPI                                                    -> [CALLDATA[0x00:0x04]]
+23         0x5b JUMPDEST                                                 -> [CALLDATA[0x00:0x04]]
+24         0x5f PUSH0                                                    -> [0x00, CALLDATA[0x00:0x04]]
+25         0x5f PUSH0                                                    -> [0x00,0x00, CALLDATA[0x00:0x04]]
+26         0xfd REVERT                                                   -> [CALLDATA[0x00:0x04]]
+27         0x5b JUMPDEST                                                 -> [CALLDATA[0x00:0x04]]
+28         0X60 PUSH1                                                    -> [0x30, CALLDATA[0x00:0x04]]
+29         0x44 PREVRANDAO                                               -> [block.difficulty, 0x30, CALLDATA[0x00:0x04]]
+30         0x56 JUMP                                                     -> [0x30, CALLDATA[0x00:0x04]]
+
+
+0x6080604052348015600e575f5ffd5b50600436106026575f3560e01c8063e2ea0dd214602a575b5f5ffd5b6030604456
+5b604051603b91906062565b60405180910390f35b5f5f54905090565b5f819050919050565b605c81604c565b82525050565b5f60208201905060735f8301846055565b9291505056
+
+5f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea26469706673582212204b10ea406354f03ffcd6ae0331bd211d759175062a2544fc0d58921158eda94464736f6c634300081e0033
+
+
+                            14   
+0x60806040525f5ffdfea26469706673582212204b10ea406354f03ffcd6ae0331bd211d759175062a2544fc0d58921158eda94464736f6c634300081e0033
+
+
+╭------+--------------------------------------------+------+--------+-------+---------------------------╮
+| Name | Type                                       | Slot | Offset | Bytes | Contract                  |
++=======================================================================================================+
+| boo  | function (foo) view external returns (foo) | 0    | 0      | 24    | src/DemoDecodable.sol:Bar |
+╰------+--------------------------------------------+------+--------+-------+---------------------------╯
+Why would I want to declare a function as a type , in which cases it optimizes gas, defines better semantics ?
