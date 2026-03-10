@@ -15,7 +15,7 @@ contract BarTest is Test{
 
     function test__fuzz__writeBar(Bar memory _bar) public {
         // console2.log(_bar.boo);        
-        console2.log("Bar User Address:", address(barUser))1;
+        console2.log("Bar User Address:", address(barUser));
         console2.log(abi.encode(_bar).length);
         vm.prank(any_caller);
         // if (msg.sender != abi.decode(abi.encode(_bar), (address))){
