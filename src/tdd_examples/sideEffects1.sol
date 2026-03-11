@@ -45,9 +45,10 @@ contract UseNonZeroAddress is TypeChecker{
         emit Used(nonZeroAddress);
     }
 
-    function use(NonZeroAddress nonZeroAddress) external verifyTypes(abi.encode(nonZeroAddress)){
-        emit Used(nonZeroAddress);
-    }
+    // NOTE: commented out — duplicate signature of use(NonZeroAddress)
+    // function use(NonZeroAddress nonZeroAddress) external verifyTypes(abi.encode(nonZeroAddress)){
+    //     emit Used(nonZeroAddress);
+    // }
 
 
 

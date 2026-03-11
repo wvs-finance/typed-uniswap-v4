@@ -66,9 +66,10 @@ contract Bar{
         // ) public returns(foo){}
     // Allowed only for internal, private
     // bar: whatever x whatever --> barOutput
-    function bar(
+    // NOTE: renamed to avoid shadowing struct `bar`
+    function bar_(
         // f: whatever ---> whatever
-        // a.k.a: Arbitrary calls 
+        // a.k.a: Arbitrary calls
         function (bytes calldata) returns(bytes memory)
     ) private pure returns(barOutput){}
 
