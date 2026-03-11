@@ -8,6 +8,15 @@
   "lib/foundational-hooks": {
     "rev": "0c62b3fb35aaaa91296df78026f221b7ffc644de"
   },
+  "lib/solady": {
+    "tag": {
+      "name": "v0.1.26",
+      "rev": "acd959aa4bd04720d640bf4e6a5c71037510cc4b"
+    }
+  },
+  "lib/universal-router": {
+    "rev": "41183d6eb154f0ab0e74a0e911a5ef9ea51fc4bd"
+  },
   "lib/v4-periphery": {
     "rev": "3779387e5d296f39df543d23524b050f89a62917"
   }
