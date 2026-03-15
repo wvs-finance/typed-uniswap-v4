@@ -32,4 +32,22 @@ function intersects(
     return lowerA < upperB && lowerB < upperA;
 }
 
-using {unwrap, eq, isZero} for TickRange global;
+// ── Packed encoding (V2): ticks recoverable from TickRange ──
+// Packs int24 tickLower in bits [47:24] and int24 tickUpper in bits [23:0].
+// Unlike fromTicks (keccak256), this is reversible.
+
+function fromTicksPacked(int24 tickLower, int24 tickUpper) pure returns (TickRange) {
+    return TickRange.wrap(bytes32(
+        (uint256(uint24(tickLower)) << 24) | uint256(uint24(tickUpper))
+    ));
+}
+
+function lowerTick(TickRange rk) pure returns (int24) {
+    return int24(uint24(uint256(TickRange.unwrap(rk)) >> 24));
+}
+
+function upperTick(TickRange rk) pure returns (int24) {
+    return int24(uint24(uint256(TickRange.unwrap(rk))));
+}
+
+using {unwrap, eq, isZero, lowerTick, upperTick} for TickRange global;
